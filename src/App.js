@@ -23,7 +23,7 @@ const particlesOptions = {
 }
 
 const app = new Clarifai.App({
-  apiKey: process.env.REACT_APP_CLARIFAI_API_KEY
+  apiKey: 'process.env.REACT_APP_CLARIFAI_API_KEY'
 })
 
 class App extends Component {
@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({ input: e.target.value })
   }
 
-  onButtonSubmit = () => {
+  onButtonSubmit = e => {
     this.setState({ imageUrl: this.state.input })
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
@@ -82,11 +82,12 @@ class App extends Component {
   }
 
   render() {
+    const { isSignedIn, imageUrl, box, route } = this.state
     return (
       <div className='App'>
         <Particles className='particles' params={particlesOptions} />
         <Navigation
-          isSignedIn={this.state.isSignedIn}
+          isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
         />
         {this.state.route === 'home' ? (
@@ -97,12 +98,9 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
             />
-            <FaceRecognition
-              box={this.state.box}
-              imageUrl={this.state.imageUrl}
-            />
+            <FaceRecognition box={box} imageUrl={imageUrl} />
           </div>
-        ) : this.state.route === 'signin' ? (
+        ) : route === 'signin' ? (
           <Signin onRouteChange={this.onRouteChange} />
         ) : (
           <Register onRouteChange={this.onRouteChange} />

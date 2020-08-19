@@ -4,7 +4,7 @@ export const Register = ({ onRouteChange }) => {
   return (
     <article className='br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center'>
       <main className='pa4 black-80'>
-        <form className='measure'>
+        <div className='measure'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             <legend className='f4 fw6 ph0 mh0'>Register</legend>
             <div className='mt3'>
@@ -16,6 +16,7 @@ export const Register = ({ onRouteChange }) => {
                 type='text'
                 name='name'
                 id='name'
+                autoComplete='off'
               />
             </div>
             <div className='mt3'>
@@ -27,6 +28,7 @@ export const Register = ({ onRouteChange }) => {
                 type='email'
                 name='email-address'
                 id='email-address'
+                autoComplete='off'
               />
             </div>
             <div className='mv3'>
@@ -38,6 +40,7 @@ export const Register = ({ onRouteChange }) => {
                 type='password'
                 name='password'
                 id='password'
+                autoComplete='off'
               />
             </div>
           </fieldset>
@@ -49,7 +52,7 @@ export const Register = ({ onRouteChange }) => {
               onClick={() => onRouteChange('home')}
             />
           </div>
-        </form>
+        </div>
       </main>
     </article>
   )
